@@ -1,5 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
+// 1. INTERFACE
 export interface IAluno extends Document {
     nome: string;
     email: string;
