@@ -64,4 +64,25 @@ router.put("/:id", async (req: Request, res: Response) => {
     }
 });
 
+// GET /cursos/:id/alunos - listar alunos desse curso
+router.get("/:id/alunos", async (req, res) => {
+    try {
+        const alunos = await Aluno.find({ curso: req.params.id }).sort({ nome: 1 });
+        return res.json(alunos);
+    } catch {
+        return res.status(400).json({ erro: "id inválido" });
+    }
+});
+
+// DELETE /cursos/:id - remover curso
+router.delete("/:id", async (req: Request, res: Response) => {
+    try {
+        const curso = await Curso.findByIdAndDelete(req.params.id);
+        if (!curso) return res.status(404).json({ erro: "Curso não encontrado" });
+        return res.status(200).json({ mensagem: "Curso removido com sucesso" });
+    } catch {
+        return res.status(400).json({ erro: "ID inválido" });
+    }
+});
+
 export default router;

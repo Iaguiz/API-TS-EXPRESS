@@ -107,7 +107,7 @@ router.patch("/:id", async (req: Request, res: Response) => {
             if(!existeCurso) return res.status(404).json({ erro: "Curso não encontrado "});
             atualizacoes.curso = curso; // Só define se o curso existir
         }
-        
+  
         if(matricula !== undefined) atualizacoes.matricula = matricula;
 
         // Se nenhum campo válido foi enviado
